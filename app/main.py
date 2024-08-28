@@ -2,6 +2,9 @@ from flask import Flask
 
 app = Flask(__name__)
 
+@app.route('/')
+def hello():
+    return '<h1 style=color:red>Say Hi!</h1>'
 
 @app.route('/one')
 def one():
@@ -34,5 +37,5 @@ def error():
 
 
 if __name__ == '__main__':
-    app.run()
+    app.run(host='0.0.0.0')
 
