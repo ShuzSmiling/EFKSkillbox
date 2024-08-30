@@ -1,11 +1,12 @@
 FROM python:3.10.12
 
-COPY /requirements.txt /app/requirements.txt
+COPY /requirements.txt /tmp/requirements.txt
 
 RUN pip install --upgrade pip
-RUN pip install -r /app/requirements.txt
+RUN pip install -r /tmp/requirements.txt
 
+ADD app.py /var/server/app.py
 COPY . /app
 WORKDIR /app
+RUN chmod 777 /app
 
-CMD ["gunicorn", "--bind", "0.0.0.0:5000", "wsgi:app"]
